@@ -1,14 +1,14 @@
 int reverse(int x){
     bool is_positive_number;
     int max_digits[] = {2,1,4,7,4,8,3,6,4,8};
+    size_t max_digits_size = sizeof(max_digits) / sizeof(int);
     if (x > 0) {
         is_positive_number = true;
-        max_digits[9] = 7;
+        max_digits[max_digits_size-1] -= 1;
     } else {
         is_positive_number = false;
     }
 
-    int max_digits_size = 10;
     int* digits = (int *)malloc(max_digits_size * sizeof(int));
     int digits_size = max_digits_size;
     for (int index = 0; index<max_digits_size; index++) {
