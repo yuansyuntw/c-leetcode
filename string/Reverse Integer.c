@@ -42,16 +42,17 @@ int reverse(int x){
         return 0;
     }
     
+    int positive_factor = 1;
+    if (is_positive_number == false) {
+        positive_factor = -1;
+    }
+    
     int reverse_digit = 0;
     for (int index=0; index<digits_size; index++) {
-        reverse_digit += digits[index] * pow(10, digits_size - index - 1);
+        reverse_digit += positive_factor * digits[index] * pow(10, digits_size - index - 1);
     }
     
     free(digits);
-    
-    if (!is_positive_number) {
-        reverse_digit = reverse_digit * -1;
-    }
 
     return reverse_digit;
 }
