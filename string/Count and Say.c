@@ -6,7 +6,6 @@ char * countAndSay(int n){
     char *newSay = strdup("11");
     for (int i=2; i<n; i++) {
         const char *oldChar = newSay;
-        // printf("n: %d, smallerSay: %s\n", i, smallerChar);
         
         newSay = malloc(sizeof(char) * 1024 * 10);
         newSay[0] = '\0';
