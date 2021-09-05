@@ -7,7 +7,7 @@ char * countAndSay(int n){
     for (int i=2; i<n; i++) {
         const char *oldChar = newSay;
         
-        newSay = malloc(sizeof(char) * 1024 * 10);
+        newSay = malloc(sizeof(char) * 1024 * 5);
         newSay[0] = '\0';
         for (int i=0; i<strlen(oldChar); i++) {
             char countedChar = oldChar[i];
