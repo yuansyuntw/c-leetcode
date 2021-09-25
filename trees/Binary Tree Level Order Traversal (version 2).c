@@ -41,7 +41,6 @@ int** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes
     }
     
     int nodeListsCount = 2000;
-    // printf("node lists count: %d\n", nodeListsCount);
     
     nodeLists = (int**) malloc(sizeof(int*) * nodeListsCount);
     *returnColumnSizes = malloc(sizeof(int) * nodeListsCount);
