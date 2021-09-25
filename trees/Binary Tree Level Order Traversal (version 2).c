@@ -7,24 +7,6 @@
  * };
  */
 
-int maxDepth(struct TreeNode* root){
-    if (root == NULL) {
-        return 0;
-    }
-    
-    int depth = 1;
-    int leftDepth = maxDepth(root->left);
-    int rightDepth = maxDepth(root->right);
-    
-    if (leftDepth > rightDepth) {
-        depth += leftDepth;
-    } else {
-        depth += rightDepth;
-    }
-    
-    return depth;
-}
-
 int getLevelOrder(struct TreeNode* root, int depth, int** nodeLists, int** returnColumnSizes){
     if (root == NULL) {
         return depth;
