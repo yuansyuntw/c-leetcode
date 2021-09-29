@@ -7,7 +7,7 @@ int checkBadVersion(int startVersion, int endVersion) {
         if (isBadVersion(startVersion)) {
             return startVersion;
         } else {
-            return (long)(startVersion + 1);
+            return startVersion + 1;
         }
     } else if ((endVersion - startVersion) < 0) {
         return startVersion;
