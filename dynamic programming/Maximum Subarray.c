@@ -1,4 +1,3 @@
-
 int subArrayMaxSum(int* nums, int startIndex, int endIndex) {
     if (startIndex >= endIndex) {
         return nums[startIndex];
