@@ -1,5 +1,3 @@
-
-
 int rob(int* nums, int numsSize){
     int *sumArray = malloc(sizeof(int) * numsSize);
     int maxSumInAllNums = nums[numsSize-1];
