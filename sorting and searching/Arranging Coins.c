@@ -1,3 +1,4 @@
+
 long getSum(int an) {
     int d = an;
     return ((long)(1 + an)*d)/2;
@@ -13,8 +14,6 @@ int arrangeCoins(int n){
         spaceSize = getSum(middle);
         if ((spaceSize - n) == 0) {
             return middle;
-        } else if (((spaceSize - n) > 0) && ((spaceSize - n) <= middle)) {
-            return middle - 1;
         }
             
         if ((spaceSize - n) < 0) {
