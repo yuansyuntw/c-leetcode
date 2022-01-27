@@ -49,8 +49,8 @@ void solve(int startCandidateIndex, int* testArray, int testArraySize, int testA
  * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().
  */
 int** combinationSum(int* candidates, int candidatesSize, int target, int* returnSize, int** returnColumnSizes){
-    // Make sure the order of candidates is ascending.
-    // When we selected the candidates in solve() method, we can get an equal value or larger value.
+        // Make sure the order of candidates is ascending.
+    // When we selected the candidates in solve() method, we can get an equal value or larger value by the start candidate index.
     qsort(candidates, candidatesSize, sizeof(int), compare);
     
     g_candidates = candidates;
