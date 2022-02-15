@@ -6,12 +6,16 @@ int* g_returnColumnSizes;
 int** g_returnIntervals;
 
 int qSortCompare(void* a, void* b) {
-    return ((*(int **)a)[0] - (*(int **)b)[0]);
+    return ((*(int** )a)[0] - (*(int** )b)[0]);
 }
 
 void addInterval(int index) {
     int columnSize = 2;
     g_returnIntervals[g_returnSize] = malloc(sizeof(int) * columnSize);
+    if (g_returnIntervals == NULL) {
+        return;
+    }
+
     g_returnIntervals[g_returnSize][0] = g_intervals[index][0];
     g_returnIntervals[g_returnSize][1] = g_intervals[index][1];
     g_returnColumnSizes[g_returnSize] = columnSize;
@@ -30,7 +34,14 @@ int** merge(int** intervals, int intervalsSize, int* intervalsColSize, int* retu
     
     g_returnSize = 0;
     g_returnColumnSizes = malloc(sizeof(int) * g_intervalsSize);
-    g_returnIntervals = malloc(sizeof(int *) * g_intervalsSize);
+    if (g_returnColumnSizes == NULL) {
+        return NULL;
+    }
+
+    g_returnIntervals = malloc(sizeof(int* ) * g_intervalsSize);
+    if (g_returnIntervals == NULL) {
+        return NULL;
+    }
     
     if (intervalsSize == 0) {
         *returnSize = g_returnSize;
