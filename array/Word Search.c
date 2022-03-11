@@ -19,9 +19,9 @@ bool solve(int seenCount, int targetR, int targetC) {
 
     if (seenCount == g_wordSize) return true;
     
-    // up
     bool isSolve = false;
     
+    // up
     if (!isSolve && solve(seenCount, targetR - 1, targetC)) {
         isSolve = true;
     }
@@ -32,7 +32,6 @@ bool solve(int seenCount, int targetR, int targetC) {
     }
     
     // down
-
     if (!isSolve && solve(seenCount, targetR + 1, targetC)) {
         isSolve = true;
     }
