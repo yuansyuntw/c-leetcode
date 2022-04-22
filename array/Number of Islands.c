@@ -7,7 +7,7 @@ int gGroupCount;
 bool visit(int r, int c) {
     bool isSuccess = false;
     if ((r>=0) && (r<gGridSize) && (c>=0) && (c<gGridColSize) && gGrid[r][c]=='1') {
-        // keep the visiting in the grid for saving memeory space
+        // Changing content for visited cell
         gGrid[r][c] = '0';
         isSuccess = true;
     }
