@@ -57,8 +57,9 @@ void findTrie(struct Trie * trie, char* word) {
         index++;
     }
     
-    // avoid to repeat finding it.
+    // avoid to repeat find it.
     trie->isEnd = false;
+    trie->wordCount--;
 }
 
 void insertTrie(struct Trie* trie, char* word) {
@@ -83,40 +84,30 @@ void insertTrie(struct Trie* trie, char* word) {
 }
 
 void backtracking(struct Trie * trie, int row, int col) {
-    // Out-of-bounds
     if ((row < 0) || (row >= gBoardRowSize) || (col < 0) || (col >= gBoardColSize)) return;
-
-    // We had found all word
     if (gResultsCount == gWordSize) return;
-
-    // The trie is not any word hadn't found.
     if (trie->wordCount == 0) return;
-
-    // We had seen this cell.
     if (gBoard[row][col] == '0') return;
     
     char temp = gBoard[row][col];
     int i = temp - 'a';
-
     if (trie->children[i] != NULL) {
         struct Trie* child = trie->children[i];
         if (gBoard[row][col] == child->character) {
-            gBoard[row][col] = '0';
             if (child->isEnd) {
                 findTrie(gRootTrie, child->word);
 
                 if (gResultsCount == gWordSize) return;
 
-                // skip for further backtracking
+                // skip to next children
                 if (child->wordCount == 0) return;
             }
-
+            
+            gBoard[row][col] = '0';
             backtracking(child, row + 1, col);
             backtracking(child, row - 1, col);
             backtracking(child, row, col + 1);
             backtracking(child, row, col - 1);
-            
-            // recover the seen cell
             gBoard[row][col] = temp;
         }
     }
