@@ -43,15 +43,16 @@ int rob(int* nums, int numsSize){
     lastOneDP[aheadTwoCellIndex] = nums[aheadTwoCellIndex];
     lastOneDP[aheadOneCellIndex] = nums[aheadOneCellIndex] + lastOneDP[aheadThreeCellIndex];
 
+    int lastOneIndex = numsSize-1;
     for (int i=currentCellIndex;i<numsSize;i++) {
-        setCurrentCellMoney(dp, nums[i]);
-        setCurrentCellMoney(lastOneDP, nums[i]);
-        
-        int lastOneIndex = numsSize-1;
-        if ((i < lastOneIndex) && (dp[currentCellIndex] > max)) {
-            max = dp[currentCellIndex];
+        // Give up the last one
+        if (i < lastOneIndex) {
+            setCurrentCellMoney(dp, nums[i]);
+            if (dp[currentCellIndex] > max) max = dp[currentCellIndex];
         }
         
+        // Give up the first one
+        setCurrentCellMoney(lastOneDP, nums[i]);
         if ((i == lastOneIndex) && (lastOneDP[currentCellIndex] > max)) {
             max = lastOneDP[currentCellIndex];
         }
