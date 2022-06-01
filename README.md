@@ -1,1 +1,1 @@
-# c_leetcode
+# c-leetcode
