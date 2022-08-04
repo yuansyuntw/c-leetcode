@@ -42,7 +42,6 @@ int decreaseKey(struct Item** heap, int heapCount, int index, int newTimes) {
 
 int minHeapInsert(struct Item** heap, int heapSize, struct Item* item, int heapCount) {
     if ((heapCount + 1) >= heapSize) {
-        // printf("Out of space for heap\n");
         return heapCount;
     }
 
@@ -129,7 +128,6 @@ struct Item* extractMin(struct Item** heap, int heapSize, int* heapCount) {
 }
 
 int networkDelayTime(int** times, int timesSize, int* timesColSize, int n, int k) {
-    // two-dimention
     int** map = (int **)calloc(sizeof(int *), (n + 1));
     for (int u = 1; u <= n; u++) {
         map[u] = (int *)calloc(sizeof(int), (n + 1));
