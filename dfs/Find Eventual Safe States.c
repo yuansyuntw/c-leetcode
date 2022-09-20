@@ -1,51 +1,47 @@
-int hadSeenCount;
-int* hadSeenNodes;
-    
-int* isSafeNodes;
+int* nodes;
+
+int STATE_SEEN = 0;
+int STATE_SAFE = 1;
+int STATE_NOTSAFE = 2;
 
 void dfs(int** graph, int graphSize, int* graphColSize, int targetNode) {
-    bool hadSeen = (hadSeenNodes[targetNode] == 1);
+    bool hadSeen = (nodes[targetNode] != 0);
     if (hadSeen) {
         return;
     }
     
-    hadSeenNodes[targetNode] = 1;
+    nodes[targetNode] = STATE_NOTSAFE;
     
     int childCount = graphColSize[targetNode];
     for (int i=0; i<childCount; i++) {
         int child = graph[targetNode][i];
         dfs(graph, graphSize, graphColSize, child);
-        bool isSafeNode = (isSafeNodes[child]);
-        if (!isSafeNode) {
+        bool isNotSafeNode = (nodes[child] == STATE_NOTSAFE);
+        if (isNotSafeNode) {
             return;
         }
     }
     
-    isSafeNodes[targetNode] = 1;
+    nodes[targetNode] = STATE_SAFE;
 }
 
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */
 int* eventualSafeNodes(int** graph, int graphSize, int* graphColSize, int* returnSize){
-    hadSeenCount = 0;
-    hadSeenNodes = calloc(graphSize, sizeof(int));
-    
-    isSafeNodes = calloc(graphSize, sizeof(int));
-    
+    nodes = calloc(graphSize, sizeof(int));
+
     int resultSize = 0;
     int* resultNodes = calloc(graphSize, sizeof(int));
-    
     for (int n=0; n<graphSize; n++) {
         dfs(graph, graphSize, graphColSize, n);
-        bool isSafeNode = (isSafeNodes[n]);
+        bool isSafeNode = (nodes[n] == STATE_SAFE);
         if (isSafeNode) {
             resultNodes[resultSize++] = n;
         }
     }
     
-    free(hadSeenNodes);
-    free(isSafeNodes);
+    free(nodes);
     
     (*returnSize) = resultSize;
     return resultNodes;
