@@ -1,11 +1,11 @@
 int* nodes;
 
-int STATE_SEEN = 0;
+int STATE_NOTSEEN = 0;
 int STATE_SAFE = 1;
 int STATE_NOTSAFE = 2;
 
 void dfs(int** graph, int graphSize, int* graphColSize, int targetNode) {
-    bool hadSeen = (nodes[targetNode] != 0);
+    bool hadSeen = (nodes[targetNode] != STATE_NOTSEEN);
     if (hadSeen) {
         return;
     }
