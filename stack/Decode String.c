@@ -8,6 +8,8 @@ struct Item **stack;
 int stackSize;
 int stackCount;
 
+const MAX_STRING_LENGTH = 100001;
+
 char *emptyString(int length)
 {
     return (char *)calloc(length, sizeof(char));
@@ -41,7 +43,7 @@ char *decodeString(char *s)
     stackCount = 0;
 
     int sLength = strlen(s);
-    char *currentString = emptyString(100001);
+    char *currentString = emptyString(MAX_STRING_LENGTH);
     char *repeatedNumberString = calloc(4, sizeof(char));
     for (int i = 0; i < sLength; i++)
     {
@@ -60,7 +62,7 @@ char *decodeString(char *s)
             int repeatedNumber = atoi(repeatedNumberString);
             push(currentString, repeatedNumber);
 
-            currentString = emptyString(100000);
+            currentString = emptyString(MAX_STRING_LENGTH);
             sprintf(repeatedNumberString, "");
 
             continue;
