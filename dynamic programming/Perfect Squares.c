@@ -30,6 +30,11 @@ int numSquares(int n)
         for (int sequareIndex = 0; sequareIndex < sequaresCount; sequareIndex++)
         {
             int sequare = sequares[sequareIndex];
+            if (sequare > i)
+            {
+                break;
+            }
+
             int remainingNumber = (i - sequare);
             if ((remainingNumber >= 0) && (remainingNumber < i) && ((dp[remainingNumber] + 1) < minSquares))
             {
