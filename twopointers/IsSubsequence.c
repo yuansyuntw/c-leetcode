@@ -21,6 +21,13 @@ bool isSubsequence(char *s, char *t)
                     lastFindSPosition = row;
                 }
                 isNotFindEqual = false;
+
+                // Stop finding other equal cases.
+                // Because the relative position of characters is remaining.
+                //
+                // For example: s="abc", t = "absabc"
+                // We can skip the second "ab", then just find the "c".
+                break;
             }
         }
         if (isNotFindEqual)
