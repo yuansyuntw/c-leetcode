@@ -47,6 +47,8 @@ int *maxSlidingWindow(int *nums, int numsSize, int k, int *returnSize)
         int removedNumberIndex = i - 1;
         if (queue[queueStartIndex] == removedNumberIndex)
         {
+            // We put the `index` of numbers into the queue.
+            // So, we can just check the index to decide whether remove it.
             queueStartIndex++;
         }
 
