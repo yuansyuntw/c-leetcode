@@ -49,6 +49,8 @@ int *maxSlidingWindow(int *nums, int numsSize, int k, int *returnSize)
         {
             // We put the `index` of numbers into the queue.
             // So, we can just check the index to decide whether remove it.
+            // 
+            // If the `index` is not the removed index that is meaning the index is not in the queue.
             queueStartIndex++;
         }
 
