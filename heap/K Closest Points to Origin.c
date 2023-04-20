@@ -79,27 +79,6 @@ void minHeapify(int index)
     }
 }
 
-void insert(struct Item *newItem)
-{
-    int index = heapCount;
-    heap[heapCount++] = newItem;
-
-    while (index > 0)
-    {
-        int parentIndex = getParentIndex(index);
-        struct Item *parent = getItem(parentIndex);
-        if (newItem->distance < parent->distance)
-        {
-            swapItems(parentIndex, index);
-            index = parentIndex;
-        }
-        else
-        {
-            break;
-        }
-    }
-}
-
 struct Item *pop()
 {
     if (heapCount == 0)
@@ -135,13 +114,23 @@ int **kClosest(int **points, int pointsSize, int *pointsColSize, int k, int *ret
         newItem->x = points[i][0];
         newItem->y = points[i][1];
         newItem->distance = getDistance(newItem);
-        insert(newItem);
+
+        // We avoid inserting into the heap to speed up the process.
+        // If we insert it into the heap here, it will take O(nlong) time.
+        heap[heapCount++] = newItem;
+    }
+
+    // We build the min heap here, it takes O(hlogn) time. `h` is half of the node size.
+    for (int i = heapCount / 2; i >= 0; i--)
+    {
+        minHeapify(i);
     }
 
     int **result = (int **)calloc(k, sizeof(int *));
     int *cols = (int *)calloc(k, sizeof(int));
     for (int i = 0; i < k; i++)
     {
+        // Here only take the O(klogn) time.
         struct Item *min = pop();
         if (min == NULL)
         {
