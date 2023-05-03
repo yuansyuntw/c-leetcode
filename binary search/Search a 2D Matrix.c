@@ -1,6 +1,6 @@
 // 1. find the row
 // 2. find the col
-// 3. return the reuslt
+// 3. return the result
 
 bool searchMatrix(int **matrix, int matrixSize, int *matrixColSize, int target)
 {
